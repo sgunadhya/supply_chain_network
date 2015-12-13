@@ -1,2 +1,3 @@
-# supply_chain_network
-Design of Supply chain networks
+# Supply Chain Network design
+
+Simple project to implement network design of supply chain systems.
