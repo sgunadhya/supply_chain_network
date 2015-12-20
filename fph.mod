@@ -10,7 +10,7 @@ param CAP{i in TIME};
 /* Demand */
 param D{i in TIME};
 /* Inventory at the end of time period */
-param I{i in TOTAL_TIME};
+var I{i in TOTAL_TIME} integer >= 0;
 /* Setup cost*/
 param setup;
 /* Holding cost for one time period*/
@@ -19,6 +19,7 @@ param M;
 param initial_inventory;
 
 minimize total_cost: sum{t in TIME} setup*z[t] + sum{t in TIME} h*I[t];
+s.t. initial{t in INITIAL_TIME}: I[t] = initial_inventory;
 s.t. conservation{t in TIME}: q[t] - D[t] + I[t-1] - I[t] = 0;
 s.t. logic{t in TIME}: M*z[t] - q[t] >= 0;
 s.t. max_capacity{t in TIME}: q[t] <= CAP[t];
